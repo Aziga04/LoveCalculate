@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="8dp"
     android:orientation="vertical"
+    android:layout_margin="8dp"
     tools:context=".CalculateFragment">
 
     <ImageView
@@ -30,7 +30,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:hint="First_name"
+            android:hint="@string/first_name"
             android:id="@+id/first_name_ed"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -42,7 +42,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:hint="@Second_name"
+            android:hint="@string/second_name"
             android:id="@+id/second_name_ed"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -51,7 +51,7 @@
         android:id="@+id/calculate_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calculate"
+        android:text="@string/calculate"
         android:textSize="16sp"
         android:padding="16dp"
         android:layout_gravity="center"/>
