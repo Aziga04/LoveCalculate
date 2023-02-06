@@ -13,19 +13,19 @@ class Repository {
     fun getLove(firstName: String, secondName: String): MutableLiveData<LoveModel> {
         var liveLove = MutableLiveData<LoveModel>()
         RetrofitService().api.calculateLove(firstName, secondName).enqueue(
-            object : Callback<LoveModel> {
-                override fun onResponse(call: Call<LoveModel>, response: Response<LoveModel>) {
+            object : Callback<LoveModel>{
+                override fun onResponse(
+                    call: Call<LoveModel>, response: Response<LoveModel>) {
                     if (response.isSuccessful) {
                         liveLove.postValue(response.body())
                     }
                 }
 
                 override fun onFailure(call: Call<LoveModel>, t: Throwable) {
-                    Log.e("ololo", "OnFailure ${t.message}")
+                    Log.e("ololo", "onFailure: ${t.message}")
                 }
-            }
-        )
 
+            })
         return liveLove
     }
 }

@@ -8,9 +8,9 @@ import retrofit2.http.Query
 interface LoveApi {
     @GET("getPercentage")
     fun calculateLove(
-        @Query("fname") firstName:String,
-        @Query("sname") secondName:String,
-        @Header("X-RapidAPI-Key") key : String = "7ec17c1e04mshb7aee483aac74a4p1489e2jsn8a69a07960c0",
-        @Header("X-RapidAPI-Host") host : String = "love-calculator.p.rapidapi.com"
-    ): Call<LoveModel>
+        @Query("fname") firstName: String,
+        @Query("sname") secondName: String,
+        @Header("X-RapidAPI-Key") key: String = "5a0017116fmsh75c37c5a76e056ap16e3a0jsnf7e1da28344b",
+        @Header("X-RapidAPI-Host") host: String = "love-calculator.p.rapidapi.com"
+    ):Call<LoveModel>
 }

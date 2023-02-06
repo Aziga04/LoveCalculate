@@ -1,9 +1,6 @@
 package com.example.lovecalculator
 
 import android.os.Bundle
-import android.util.Log
-import retrofit2.Callback
-import retrofit2.Call
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,24 +9,19 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.example.lovecalculator.databinding.FragmentCalculatorBinding
-import com.example.lovecalculator.remote.LoveModel
-import com.example.lovecalculator.remote.RetrofitService
+import com.example.lovecalculator.databinding.FragmentBlankBinding
 import com.example.lovecalculator.viewmodel.LoveViewModel
-import retrofit2.Response
 
 
-
-class CalculateFragment : Fragment() {
-
-    private lateinit var binding: FragmentCalculatorBinding
+class BlankFragment() : Fragment() {
+    lateinit var binding: FragmentBlankBinding
     private val viewModel : LoveViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentCalculatorBinding.inflate(layoutInflater, container, false)
+        binding = FragmentBlankBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -41,10 +33,10 @@ class CalculateFragment : Fragment() {
 
     private fun initClickers() {
         with(binding) {
-            calculateBtn.setOnClickListener {
-                viewModel.getLiveLove(firstNameEd.text.toString(),secondNameEd.text.toString()).observe(
+            btnCalculate.setOnClickListener {
+                viewModel.getLiveLove(etFirstName.text.toString(),etSecondName.text.toString()).observe(
                     viewLifecycleOwner, Observer {
-                        findNavController().navigate(R.id.resultFragment, bundleOf("key" to (it?.percentage
+                        findNavController().navigate(R.id.fistFragment, bundleOf("key" to (it?.percentage
                                 )))
                     }
                 )

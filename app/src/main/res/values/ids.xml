@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="ivHeartPercentage" type="id" />
+    <item name="ivHeartPercentage" type="id" />
+    <item name="btnTryAgain" type="id" />
+    <item name="fistFragment" type="id" />
+    <item name="blankFragment" type="id" />
+    <item name="mainFragment" type="id" />
+</resources>
