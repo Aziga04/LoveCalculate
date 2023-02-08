@@ -6,4 +6,5 @@
     <item name="fistFragment" type="id" />
     <item name="blankFragment" type="id" />
     <item name="mainFragment" type="id" />
+    <item name="BoardingFragment" type="id" />
 </resources>

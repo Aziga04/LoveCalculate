@@ -34,14 +34,22 @@ class BlankFragment() : Fragment() {
     private fun initClickers() {
         with(binding) {
             btnCalculate.setOnClickListener {
-                viewModel.getLiveLove(etFirstName.text.toString(),etSecondName.text.toString()).observe(
-                    viewLifecycleOwner, Observer {
-                        findNavController().navigate(R.id.fistFragment, bundleOf("key" to (it?.percentage
-                                )))
-                    }
-                )
+                findNavController().navigate(R.id.fistFragment)
+            }
+            btnCalculate.setOnClickListener {
+                viewModel.getLiveLove(firstNameEd.text.toString(), secondNameEd.text.toString())
+                    .observe(
+                        viewLifecycleOwner, Observer {
+                            App.db.loveDao().insert(it)
+                            findNavController().navigate(
+                                R.id.fistFragment, bundleOf(
+                                    "key" to (it?.percentage
+                                            )
+                                )
+                            )
+                        }
+                    )
             }
         }
-    }
 
 }

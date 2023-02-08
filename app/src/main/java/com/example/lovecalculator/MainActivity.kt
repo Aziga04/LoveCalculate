@@ -8,17 +8,20 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var pref:Prefs
-    private lateinit    var binding: ActivityMainBinding
-    private lateinit var navController: NavController
+
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var navController : NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val  pref = Prefs(this)
+
         pref.saveState()
         if (pref.isShown()){
-            navController.navigate(R.id.boardingFragment)
+            navController.navigate(R.id.BoardingFragment)
         }
     }
 }
