@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:padding="24dp"
-    tools:context=".HistoryFragment">
+    tools:context=".history.HistoryFragment">
 
 
     <TextView
@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:text="@string/hello_blank_fragment" />
+        android:text="" />
+
 
 </LinearLayout>

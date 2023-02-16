@@ -4,10 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.lovecalculator.remote.LoveModel
 import com.example.lovecalculator.repository.Repository
+import javax.inject.Inject
 
-class LoveViewModel() : ViewModel() {
+class LoveViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
 
     fun getLiveLove(firstName: String, secondName: String): LiveData<LoveModel> {
-        return Repository().getLove(firstName, secondName)
+        return repository.getLove(firstName, secondName)
+    }
+    fun hisroryLove(loveModel: List<LoveModel>){
+        return repository.historyLove(loveModel)
     }
 }

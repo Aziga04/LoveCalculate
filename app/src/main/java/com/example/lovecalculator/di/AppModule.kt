@@ -1,7 +1,8 @@
-package com.example.lovecalculator
+package com.example.lovecalculator.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.lovecalculator.room.Prefs
 import com.example.lovecalculator.remote.LoveApi
 import com.example.lovecalculator.room.AppDataBase
 import com.example.lovecalculator.room.LoveDao
@@ -20,29 +21,31 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class AppModule {
 
+
     @Provides
     fun provideApi(): LoveApi {
-        return Retrofit.Builder().baseUrl("https://love-calculator.p.rapidapi.com/")
-            .addConverterFactory(GsonConverterFactory.create()).build()
+        return Retrofit.Builder().baseUrl("https://love-calculator.p.rapidapi.com")
+            .addConverterFactory(GsonConverterFactory.create(Gson())).build()
             .create(LoveApi::class.java)
     }
 
     @Singleton
     @Provides
-    fun providePrefs(@ApplicationContext context: Context):Prefs{
+    fun providePrefs(@ApplicationContext context: Context): Prefs {
         return Prefs(context)
     }
 
     @Singleton
     @Provides
-    fun provideDataBase(@ApplicationContext app:Context):AppDataBase=
-        Room.databaseBuilder(app,AppDataBase::class.java,"love_data")
-            .allowMainThreadQueries().fallbackToDestructiveMigration().build()
+    fun provideDataBase(@ApplicationContext context:Context): AppDataBase {
+        return  Room.databaseBuilder(context, AppDataBase::class.java, "love_data")
+            .allowMainThreadQueries().build()
+    }
 
     @Singleton
     @Provides
-    fun provideHistoryDao(appDataBase:AppDataBase): LoveDao {
-        return  appDataBase.loveDao()
+    fun provideHistoryDao(@ApplicationContext context: Context): LoveDao {
+        return provideDataBase(context).loveDao()
     }
 
 

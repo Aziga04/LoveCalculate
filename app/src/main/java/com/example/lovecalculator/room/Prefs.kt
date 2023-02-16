@@ -1,4 +1,4 @@
-package com.example.lovecalculator
+package com.example.lovecalculator.room
 
 import android.content.Context
 import android.content.SharedPreferences

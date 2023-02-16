@@ -1,4 +1,4 @@
-package com.example.lovecalculator
+package com.example.lovecalculator.history
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.lovecalculator.databinding.FragmentHistoryBinding
 import com.example.lovecalculator.room.LoveDao
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class HistoryFragment : Fragment() {
 
     @Inject

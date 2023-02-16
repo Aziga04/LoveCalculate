@@ -1,27 +1,26 @@
 package com.example.lovecalculator.boarding.adapter
 
 
+import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import com.example.lovecalculator.Prefs
+import com.example.lovecalculator.R
 import com.example.lovecalculator.boarding.OnBoard
 import com.example.lovecalculator.databinding.ItemBoardingBinding
 
 
 class BoardingAdapter(
-    private val onClick: () -> Unit
+    private val onClick: () -> Unit,
+private val context: Context
 ) : RecyclerView.Adapter<BoardingAdapter.OnBoardingViewHolder>() {
 
 
     private val list = arrayListOf(
-        OnBoard("", "Have a Good time"),
-        OnBoard("", "Cherishing love"),
-        OnBoard("", "Have a breakup?"),
-        OnBoard("", "Test your love")
+        OnBoard(R.raw.love_animation_one, "Have a Good time"),
+        OnBoard(R.raw.love_animation_tho, "Cherishing love"),
+        OnBoard(R.raw.love_animation_three, "Have a breakup?"),
+        OnBoard(R.raw.love_animation_four, "Test your love")
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OnBoardingViewHolder {
@@ -46,8 +45,11 @@ class BoardingAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(onBoard: OnBoard) {
             binding.tvTitle.text = onBoard.title
-            binding.ivBoarding.load( onBoard.image)
-            binding.tvSkip.setOnClickListener{
+            binding.ivBoarding.setAnimation(onBoard.animation!!)
+            if (adapterPosition == list.lastIndex) {
+                binding.tvSkip.text = context.getString(R.string.next)
+            } else binding.tvSkip.text = context.getString(R.string.skip)
+            binding.tvSkip.setOnClickListener {
                 onClick()
             }
         }

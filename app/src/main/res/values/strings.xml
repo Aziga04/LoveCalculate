@@ -11,4 +11,7 @@
     <string name="love" />
     <string name="you" />
     <string name="history">history</string>
+    <string name="Title" />
+    <string name="skip" />
+    <string name="next" />
 </resources>

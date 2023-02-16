@@ -10,10 +10,17 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.lovecalculator.databinding.FragmentBlankBinding
+import com.example.lovecalculator.room.LoveDao
 import com.example.lovecalculator.viewmodel.LoveViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+
 
 
 class BlankFragment() : Fragment() {
+    @Inject
+    lateinit var loveDao: LoveDao
+
     lateinit var binding: FragmentBlankBinding
     private val viewModel : LoveViewModel by viewModels()
 
@@ -31,19 +38,20 @@ class BlankFragment() : Fragment() {
         initClickers()
     }
 
+
     private fun initClickers() {
         with(binding) {
-            btnCalculate.setOnClickListener {
-                findNavController().navigate(R.id.fistFragment)
+            historyBtn.setOnClickListener {
+                findNavController().navigate(R.id.historyFragment)
             }
-            btnCalculate.setOnClickListener {
+            calculateBtn.setOnClickListener {
                 viewModel.getLiveLove(firstNameEd.text.toString(), secondNameEd.text.toString())
                     .observe(
                         viewLifecycleOwner, Observer {
-                            App.db.loveDao().insert(it)
+                            loveDao.insert(listOf(it))
                             findNavController().navigate(
                                 R.id.fistFragment, bundleOf(
-                                    "key" to (it?.percentage
+                                    LOVE_KEY to (it?.percentage
                                             )
                                 )
                             )
@@ -51,5 +59,10 @@ class BlankFragment() : Fragment() {
                     )
             }
         }
+    }
+
+    companion object {
+        const val LOVE_KEY = "KEY"
+    }
 
 }

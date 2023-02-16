@@ -2,6 +2,6 @@ package com.example.lovecalculator.boarding
 
 
 data class OnBoard (
-    val image: String? = null,
+    val animation: Int? = null,
     val title:String? = null
 )
